@@ -2,13 +2,15 @@ package ua.lpnuai.oop.korzhov1;
 
 import java.util.Scanner;
 
+import static ua.lpnuai.oop.korzhov1.Debugger.debug;
 import static ua.lpnuai.oop.korzhov1.Helper.help;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String input;
+         String input;
+         String str = "yeet";
 
         do{
             System.out.println("Виберіть вашу дію: \n");
@@ -16,30 +18,63 @@ public class Main {
                     "b. перегляд даних;\n" +
                     "c. виконання обчислень;\n" +
                     "d. відображення результату;\n" +
-                    "e. завершення програми\n");
+                    "e. завершення програми\n" +
+                    "-h або help для додатковї інформації\n" +
+                    "-d або debug - режим налаштування ВКЛ або ВИКЛ\n");
 
             Scanner in = new Scanner(System.in);
             input = in.nextLine();
 
-            if(input.equals("a") || input.equals("введення даних")){
-                Scanner c = new Scanner(System.in);
-                String str = c.nextLine();
-
-                // some actual code here
+            switch (input) {
+                case "a":
+                case "введення даних":
+                    Scanner c = new Scanner(System.in);
+                    str = c.nextLine();
+                    break;
+                case "b":
+                case "перегляд даних":
+                    if (str.equals("yeet")) {
+                        System.out.println("Немає даних!");
+                    } else {
+                        debug(str, false, true);
+                    }
+                    break;
+                case "c":
+                case "виконання обчислень":
+                    if (str.equals("yeet")) {
+                        System.out.println("Немає даних!");
+                    } else {
+                        System.out.println("Обчислення виконуються....");
+                        debug(str, false, false);
+                    }
+                    break;
+                case "d":
+                case "відображення результату":
+                    if (str.equals("yeet")) {
+                        System.out.println("Немає даних!");
+                    } else {
+                        debug(str, false, false);
+                    }
+                    break;
+                case "-h":
+                case "-help":
+                    help();
+                    break;
+                case "-d":
+                case "-debug":
+                    if (str.equals("yeet")) {
+                        System.out.println("Немає даних!");
+                    } else {
+                        debug(str, true, true);
+                    }
+                    break;
+                case "e":
+                case "завершення програми":
+                    System.out.println("ending....");
+                    break;
+                 default:
+                     System.out.println("Неправильна команда!");
             }
-            else if(input.equals("b") || input.equals("перегляд даних")){
-                //here i showcase all the vars
-            }
-            else if(input.equals("c") || input.equals("виконання обчислень")){
-                //here I show all the maths in the program
-            }
-            else if(input.equals("d") || input.equals("відображення результату")){
-                //the actual answer is shown here
-            }
-            else if(input.equals("-h") || input.equals("-help")){
-                help();
-            }
-
         }while( !(input.equals("e") || (input.equals("завершення програми"))));
     }
 }
