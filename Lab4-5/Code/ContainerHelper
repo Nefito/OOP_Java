@@ -1,0 +1,8 @@
+public class ContainerHelper {
+    public static <T> boolean contains(Iterable<T> container, T element) {
+        for (T i : container) {
+            if (i.equals(element)) return true;
+        }
+        return false;
+    }
+}
