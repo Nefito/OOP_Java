@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class Main {
+
+    static long limit;
+    static int len = 3000;
+    static Container cont = new Container(len);
+
+    public static void main(String[] args) throws InterruptedException{
+        System.out.println("Enter a time limit(in seconds) for this program: ");
+        Scanner sc = new Scanner(System.in);
+        limit = sc.nextLong()*1000;
+
+        Thread t1 = new Thread1();
+        Thread t2 = new Thread2();
+        Thread t3 = new Thread3();
+        Thread time = new Time(limit, System.currentTimeMillis());
+
+        long startTime = System.currentTimeMillis();
+        time.start();
+        t1.start();
+        t2.start();
+        t3.start();
+        t1.join();
+        t2.join();
+        t3.join();
+        long endTimeT = System.currentTimeMillis() - startTime;
+        if(endTimeT > limit){
+            System.out.println("Time's up!\nExiting...");
+            System.exit(0);
+        }
+
+        long min, max, sum;
+        startTime = System.currentTimeMillis();
+        sum = cont.sum();
+        min = cont.min();
+        max = cont.max();
+        long endTime = System.currentTimeMillis() - startTime;
+        if(endTime > limit){
+            System.out.println("Time's up!\nExiting...");
+            System.exit(0);
+        }
+
+        System.out.println("Parallel time " + endTimeT + "\nGradual time: " + endTime);
+        System.out.println("Min: " + min + "; Max: " + max + "; Sum: " + sum);
+        System.exit(0);
+    }
+}
