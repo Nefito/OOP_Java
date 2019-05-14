@@ -1,0 +1,15 @@
+public class Time extends Thread{
+    private long limit, start;
+
+    public Time(long limit, long start){
+        this.limit = limit;
+        this.start = start;
+    }
+
+    public void run(){
+        if(limit < System.currentTimeMillis() - start){
+            System.out.println("Time's out!\nExiting...");
+            System.exit(0);
+        }
+    }
+}
