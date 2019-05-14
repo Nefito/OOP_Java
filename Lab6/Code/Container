@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+
+public class Container {
+    private ArrayList<Long> d = new ArrayList<>();
+
+    public Container(int length)
+    {
+        for(int i = 0; i < length; i++)
+        {
+            d.add((long) (Math.random() * 1000));
+        }
+    }
+
+    public long min(){
+        long min = d.get(0);
+
+        for(int i = 0; i < d.size(); i++){
+            if(min > d.get(i)){
+                min = d.get(i);
+            }
+        }
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            System.out.println("Something went wrong...");
+        }
+        return min;
+    }
+
+    public long max(){
+        long max = d.get(0);
+
+        for(int i = 0; i < d.size(); i++){
+            if(max < d.get(i)){
+                max = d.get(i);
+            }
+        }
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            System.out.println("Something went wrong...");
+        }
+        return max;
+    }
+
+    public long sum(){
+        long sum = 0;
+        for(int i = 0; i < d.size(); i++){
+            sum+= d.get(i);
+        }
+        try {
+            Thread.sleep(700);
+        } catch (InterruptedException e) {
+            System.out.println("Something went wrong...");
+        }
+        return sum;
+    }
+
+}
